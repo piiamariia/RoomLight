@@ -1,0 +1,65 @@
+# Domain Model – RoomLight
+
+## Overview
+
+RoomLight has rooms, lights, modes and a main controller. The controller sets the lights and makes sure all rooms are updated.
+
+## Entities
+
+### Controller
+- controls all rooms
+- stores the main lighting setup
+- updates rooms when settings change
+
+### Room
+- a hotel room
+- has one light
+- can have default or custom settings
+
+### Light
+- belongs to a room
+- can be on or off
+- has a brightness level
+- uses a mode
+
+### Mode
+- tells the light how to behave
+- examples: night mode, reading mode, energy saving mode
+
+## Relationships
+
+- One controller manages many rooms (1 → n)  
+- One room has one light (1 → 1)  
+- One light uses one mode (1 → 1)  
+- One mode can be used by many lights (1 → n)
+
+## Diagram
+
+Controller
+   |
+   | manages (1 → n)
+   ↓
++---------+
+|  Room   |
++---------+
+| id      |
+| settings|
++---------+
+   |
+   | has (1 → 1)
+   ↓
++---------+
+|  Light  |
++---------+
+| is_on   |
+| brightness |
++---------+
+   |
+   | uses (1 → 1)
+   ↓
++---------+
+|  Mode   |
++---------+
+| name    |
+| brightness_level |
++---------+
